@@ -8,14 +8,9 @@ color("red") xz_extrude(my_points, my_extrude, false);
 color("blue") yz_extrude(my_points, my_extrude, false);
 */
 
-module xy_extrude(points, height, center = true){
-    if(center == true) 
-        translate ([0, 0, height/-2])  
-                linear_extrude(height) 
-                    polygon(points = points);
-   else
-        linear_extrude(height) 
-            polygon(points = points);
+module xy_extrude(points, height, center = true) {
+    linear_extrude(height = height, center = center) 
+        polygon(points = points); 
 };
 
 module xz_extrude(points, height, center = true){
