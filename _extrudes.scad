@@ -13,27 +13,13 @@ module xy_extrude(points, height, center = true) {
         polygon(points = points); 
 };
 
-module xz_extrude(points, height, center = true){
-    if(center == true) 
-        translate ([0, height/2, 0])        
-            rotate([90, 0, 0])
-                linear_extrude(height) 
-                    polygon(points = points);
-   else
-       translate ([0, height, 0])    
-           rotate([90, 0, 0])
-               linear_extrude(height) 
-                   polygon(points = points);
+module xz_extrude(points , height , center = true){
+    rotate([90, 0, 0])
+        mirror([0, 0, 1])        
+            xy_extrude(points, height, center);            
 };
 
-module yz_extrude(points, height, center = true){
-    if(center == true) 
-        translate ([height/-2, 0, 0])        
-            rotate([90, 0, 90])
-                linear_extrude(height) 
-                    polygon(points = points);
-   else
-        rotate([90, 0, 90])
-            linear_extrude(height) 
-                polygon(points = points);
+module yz_extrude(points , height , center = true){
+    rotate([90, 0, 90])
+        xy_extrude(points, height, center);
 };
